@@ -1,0 +1,11 @@
+//current state data
+0
+1
+0
+3
+3
+5
+0
+2
+8
+9
