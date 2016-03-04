@@ -1,7 +1,9 @@
 //TOP.v
 module TOP(CLK, RST, EN);
+//module TOP(CLK, RST, EN, CHARA_EN);
 
 input CLK, RST, EN;
+//input CHARA_EN;
 
 //GOTO_ADDR.v
 wire [11:0] ADDR_G;
@@ -18,8 +20,7 @@ wire [7:0] CURRENT_STATE_F, FAILURE_STATE;//F=FAILURE_FUNCITON
 
 //TABLE_READER.v
 wire [7:0] READER;
-wire [7:0] READER1;
-wire [7:0] RESULT;
+wire [7:0] NOW_STATE;
 
 GOTO_RAM GOTO_RAM(
     .CLK(CLK),
@@ -54,9 +55,9 @@ TABLE_READER TABLE_READER(
   .CLK(CLK),
   .RST(RST),
   .EN(EN),
+  //.CHARA_EN(CHARA_EN),
   .READER(READER),
-  .READER1(READER1),
-  .RESULT(RESULT)
+  .NOW_STATE(NOW_STATE)
 );
 
 endmodule
