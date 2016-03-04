@@ -4,8 +4,10 @@ module testbench;
 reg CLK;
 reg RST;
 reg EN;
+//reg CHARA_EN;
 
 TOP TOP(CLK, RST, EN);
+//TOP TOP(CLK, RST, EN, CHARA_EN);
 
 parameter STEP = 10;
 
@@ -19,12 +21,13 @@ initial begin
   CLK = 0;
   RST = 0;
   EN = 0;
+ // CHARA_EN = 0;
   #10
   RST = 1;
   #100
   EN = 1;
-  #10
-  EN = 0;
+ // CHARA_EN = 1;
+  #100
   $finish;
 end
 
