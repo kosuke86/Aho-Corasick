@@ -1,16 +1,18 @@
 //TABLE_READER.v
-module TABLE_READER(CLK, RST, EN, READER, READER1, RESULT);
+module TABLE_READER(CLK, RST, EN, READER, NOW_STATE);
+//module TABLE_READER(CLK, RST, EN, CHARA_EN, READER, NOW_STATE, RESULT);
 input CLK;
 input RST;
 input EN;
+//input CHARA_EN;
 
 output [7:0] READER;
-output [7:0] READER1;
-output [7:0] RESULT;
+output [7:0] NOW_STATE;
 integer i;
 
 reg [7:0] READER;
-reg [7:0] READER1;
+reg [7:0] NOW_STATE;
+//reg [7:0] RESULT;
 reg [7:0] RAM_CURRENT_STATE_G[0:31];
 reg [3:0] RAM_CHARA[0:31];
 reg [7:0] RAM_NEXT_STATE[0:31];
@@ -38,36 +40,49 @@ always @(posedge CLK) begin
  
  endmodule
 */
-function SEARCH_0;
+function PROCESS_STRING;
   input EN;
+  input CHARA_EN;
   begin
     if(EN == 1) begin
     READER = 0;
-  for(i=0; i<10; i=i+1) begin
+  for(i=0; i<11; i=i+1) begin
     if(RAM_CURRENT_STATE_G[i] == 0)begin
-      READER = i;
+      READER = i;//ADDRの値
+      CHARA_EN = 1;
       end else
       EN = 0;
   end
 end
-end
-endfunction
-
-
-function CHARA_CHECK;
-  input SEARCH_OUT;
-  begin
-  if(EN)
-  if(RAM_CHARA[SEARCH_OUT] == 11) begin
-    READER1 = RAM_NEXT_STATE[SEARCH_OUT];
-  end else if (RAM_FAILURE_STATE[SEARCH_OUT] == 0) begin
-      READER1 = 0;
+if(CHARA_EN == 1) begin
+  if(RAM_CHARA[READER] == 13) begin
+    NOW_STATE = RAM_NEXT_STATE[READER];
+  end else if (RAM_FAILURE_STATE[READER] == 0) begin
+      NOW_STATE = 0;
       end else 
-        READER1 = RAM_FAILURE_STATE[SEARCH_OUT];
+        NOW_STATE = RAM_FAILURE_STATE[READER];
+    end
+  end
+endfunction
+/*
+function CHARA_CHECK;
+  //input SEARCH_OUT;
+  input CHARA_EN;
+  //input EN;
+  begin
+  if(CHARA_EN == 1)
+  if(RAM_CHARA[READER] == 13) begin
+    NOW_STATE = RAM_NEXT_STATE[READER];
+  end else if (RAM_FAILURE_STATE[READER] == 0) begin
+      NOW_STATE = 0;
+      end else 
+        NOW_STATE = RAM_FAILURE_STATE[READER];
     end
 endfunction
+*/
 
-
-assign SEARCH_OUT = SEARCH_0(EN);
-assign RESULT = CHARA_CHECK(SEARCH_OUT);
+assign SEARCH_OUT = PROCESS_STRING(EN, CHARA_EN);
+//assign RESULT = CHARA_CHECK(CHARA_EN);
+//assign RESULT = CHARA_CHECK(SEARCH_OUT);
+//assign RESULT = CHARA_CHECK(CHATA_EN);
 endmodule
