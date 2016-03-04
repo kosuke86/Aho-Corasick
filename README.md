@@ -1,0 +1,2 @@
+# Aho-Corasick法をVerilogで実現
+master_aho.ccからAho-Corasick法で必要な情報を抽出しVerilogに投げると全て処理が出来る
