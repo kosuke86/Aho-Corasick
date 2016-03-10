@@ -22,24 +22,6 @@ initial $readmemh("chara_goto.txt", RAM_CHARA);
 initial $readmemh("next_state_goto.txt", RAM_NEXT_STATE);
 initial $readmemh("failure_state_failure.txt", RAM_FAILURE_STATE);
 
-//aho-corasick algorithm
-/*
-always @(posedge CLK) begin
-  if(EN)
-    READER <= 0;
-  for(i=0; i<10; i=i+1) begin
-      if(RAM_CURRENT_STATE_G[i] == 0)
-
-       if(RAM_CHARA[READER] == )//chara
-         READER <= RAM_NEXT_STATE[READER];
-       else if(RAM_FAILURE_STATE[READER] == 0)
-         READER <= 0;
-       else
-         READER <= RAM_FAILURE_STATE[READER];
- end
- 
- endmodule
-*/
 function PROCESS_STRING;
   input EN;
   input CHARA_EN;
@@ -82,7 +64,5 @@ endfunction
 */
 
 assign SEARCH_OUT = PROCESS_STRING(EN, CHARA_EN);
-//assign RESULT = CHARA_CHECK(CHARA_EN);
-//assign RESULT = CHARA_CHECK(SEARCH_OUT);
-//assign RESULT = CHARA_CHECK(CHATA_EN);
+
 endmodule
