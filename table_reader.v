@@ -1,4 +1,5 @@
 //TABLE_READER.v
+//格納されたデータを読み出し処理を行う
 module TABLE_READER(CLK, RST, EN, READER, NOW_STATE);
 //module TABLE_READER(CLK, RST, EN, CHARA_EN, READER, NOW_STATE, RESULT);
 input CLK;
