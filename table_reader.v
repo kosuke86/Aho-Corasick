@@ -1,12 +1,14 @@
 //TABLE_READER.v
-module TABLE_READER(CLK, RST, EN, NOW_STATE);
+module TABLE_READER(CLK, RST, EN, NOW_STATE, EN_NEXT);
 input CLK;
 input RST;
 input EN;
 
 output [7:0] NOW_STATE;
+output EN_NEXT;
 integer i;
 
+reg EN_NEXT;
 reg [7:0] ADDR;
 reg [7:0] NOW_STATE;
 reg [7:0] RAM_CURRENT_STATE_G[0:31];
@@ -37,6 +39,7 @@ end
 if(CHARA_EN == 1) begin
   if(RAM_CHARA[ADDR] == 11) begin
     NOW_STATE = RAM_NEXT_STATE[ADDR];
+    EN_NEXT = 1;// TABLE_READER1.vの処理フラグON
   end else
     NOW_STATE = 0;
 end
