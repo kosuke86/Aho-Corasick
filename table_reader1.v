@@ -20,17 +20,17 @@ initial $readmemh("failure_state_failure.txt", RAM_FAILURE_STATE);
 
 //aho-corasick algorithm
 function PROCESS_STRING1;
+  input EN;
   input CHARA_EN;
-  input NOW_STATE_IN;
   begin
-if(EN == 1) begin
-  ADDR =0;
+if(EN == 1) begin // TABLE_READER.vから信号受け取ってる
   for(j=0; j<10; j=j+1) begin
     if(RAM_CURRENT_STATE_G[j] == NOW_STATE_IN) begin
-      ADDR = j;
+      ADDR = NOW_STATE_IN;
       CHARA_EN = 1; //flug on
-    end 
+    end
   end
+end
 if(CHARA_EN == 1) begin
   if(RAM_CHARA[ADDR] == 12) begin // テキストデータを入れる予定
     NOW_STATE_OUT = RAM_NEXT_STATE[ADDR];
@@ -38,10 +38,9 @@ if(CHARA_EN == 1) begin
       NOW_STATE_OUT = 0;
       end else 
         NOW_STATE_OUT = RAM_FAILURE_STATE[NOW_STATE_IN + 1];
-    end
   end
 end
 endfunction
 
-assign SEARCH_OUT1 = PROCESS_STRING1(CHARA_EN, NOW_STATE_IN);
+assign SEARCH_OUT1 = PROCESS_STRING1(EN, CHARA_EN);
 endmodule
