@@ -172,6 +172,7 @@ int main()
       nextstate_show++;
     }
 */
+    cout << "-----------goto function-----------" << endl;
     vector<unsigned int>::iterator state_show = state_gotoFunction.begin();
     vector<unsigned int>::iterator nextstate_show = nextstate_gotoFunction.begin();
     vector<unsigned char>::iterator trans_show = trans_gotoFunction.begin();
@@ -185,16 +186,17 @@ int main()
     for (int b = 1; b < max_state + 1; b++)
       cout << "f(" << b << ")=" << f[b] << endl;   
 */
+    cout << "-----------failure function-----------" << endl;
     for (int b = 1; b < max_state + 1; b++)
       cout <<  b << f[b] << endl;
     
-   /*
+   
     cout << "-----------output function-----------" << endl;
     for (int a = 1; a < max_state + 1; a++)
     {
       if ( out[a] != 0)
-      cout << "number" << a << ":" << out[a] << endl;
+      cout << a << endl;
     }
-    */
+    
     return 0;
 }
