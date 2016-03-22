@@ -24,9 +24,9 @@ function PROCESS_STRING1;
   input CHARA_EN;
   begin
 if(EN == 1) begin // TABLE_READER.vから信号受け取ってる
-  for(j=0; j<10; j=j+1) begin
+  for(j=0; j<4; j=j+1) begin
     if(RAM_CURRENT_STATE_G[j] == NOW_STATE_IN) begin
-      ADDR = NOW_STATE_IN;
+      ADDR = j;
       CHARA_EN = 1; //flug on
     end
   end
@@ -34,10 +34,10 @@ end
 if(CHARA_EN == 1) begin
   if(RAM_CHARA[ADDR] == 12) begin // テキストデータを入れる予定
     NOW_STATE_OUT = RAM_NEXT_STATE[ADDR];
-  end else if (RAM_FAILURE_STATE[NOW_STATE_IN + 1] == 0) begin
+  end else if (RAM_FAILURE_STATE[NOW_STATE_IN - 1] == 0) begin
       NOW_STATE_OUT = 0;
       end else 
-        NOW_STATE_OUT = RAM_FAILURE_STATE[NOW_STATE_IN + 1];
+        NOW_STATE_OUT = RAM_FAILURE_STATE[NOW_STATE_IN - 1];
   end
 end
 endfunction
