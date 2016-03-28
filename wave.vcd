@@ -1,0 +1,582 @@
+$date
+	Fri Mar 25 22:28:41 2016
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module testbench $end
+$scope module TOP $end
+$var wire 12 ! ADDR_F [11:0] $end
+$var wire 12 " ADDR_G [11:0] $end
+$var wire 4 # CHARA [3:0] $end
+$var wire 1 $ CLK $end
+$var wire 8 % CURRENT_STATE_F [7:0] $end
+$var wire 8 & CURRENT_STATE_G [7:0] $end
+$var wire 1 ' EN $end
+$var wire 1 ( EN_MATCH $end
+$var wire 1 ) EN_NEXT_A $end
+$var wire 8 * FAILURE_STATE [7:0] $end
+$var wire 1 + MATCH $end
+$var wire 8 , NEXT_STATE [7:0] $end
+$var wire 8 - NOW_STATE_A [7:0] $end
+$var wire 8 . NOW_STATE_OUT [7:0] $end
+$var wire 1 / RST $end
+$scope module GOTO_RAM $end
+$var wire 12 0 ADDR_G [11:0] $end
+$var wire 1 $ CLK $end
+$var wire 1 / RST $end
+$var reg 4 1 CHARA [3:0] $end
+$var reg 8 2 CURRENT_STATE_G [7:0] $end
+$var reg 8 3 NEXT_STATE [7:0] $end
+$upscope $end
+$scope module GOTO_ADDR $end
+$var wire 1 $ CLK $end
+$var wire 1 / RST $end
+$var reg 12 4 ADDR_G [11:0] $end
+$upscope $end
+$scope module FAILURE_RAM $end
+$var wire 12 5 ADDR_F [11:0] $end
+$var wire 1 $ CLK $end
+$var wire 1 / RST $end
+$var reg 8 6 CURRENT_STATE_F [7:0] $end
+$var reg 8 7 FAILURE_STATE [7:0] $end
+$upscope $end
+$scope module FAILURE_ADDR $end
+$var wire 1 $ CLK $end
+$var wire 1 / RST $end
+$var reg 12 8 ADDR_F [11:0] $end
+$upscope $end
+$scope module TABLE_READER $end
+$var wire 1 9 CHARA_EN $end
+$var wire 1 $ CLK $end
+$var wire 1 ' EN $end
+$var wire 1 / RST $end
+$var wire 1 : SEARCH_OUT $end
+$var reg 8 ; ADDR [7:0] $end
+$var reg 1 < EN_NEXT $end
+$var reg 8 = NOW_STATE [7:0] $end
+$var integer 32 > i [31:0] $end
+$scope function PROCESS_STRING $end
+$var reg 1 ? CHARA_EN $end
+$var reg 1 @ EN $end
+$var reg 1 A PROCESS_STRING $end
+$upscope $end
+$upscope $end
+$scope module TABLE_READER1 $end
+$var wire 1 B CHARA_EN $end
+$var wire 1 $ CLK $end
+$var wire 1 ) EN $end
+$var wire 8 C NOW_STATE_IN [7:0] $end
+$var wire 1 / RST $end
+$var wire 1 D SEARCH_OUT1 $end
+$var reg 8 E ADDR [7:0] $end
+$var reg 1 F EN_MATCH $end
+$var reg 8 G NOW_STATE_OUT [7:0] $end
+$var integer 32 H j [31:0] $end
+$scope function PROCESS_STRING1 $end
+$var reg 1 I CHARA_EN $end
+$var reg 1 J EN $end
+$var reg 1 K PROCESS_STRING1 $end
+$upscope $end
+$upscope $end
+$scope module MATCH $end
+$var wire 1 $ CLK $end
+$var wire 1 ( EN $end
+$var wire 1 L MATCH_JUDGE $end
+$var wire 1 / RST $end
+$var wire 8 M STATE_DATA [7:0] $end
+$var reg 1 N MATCH $end
+$var integer 32 O a [31:0] $end
+$scope function MATCHING $end
+$var reg 1 P EN $end
+$var reg 1 Q MATCHING $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+xQ
+xP
+bx O
+xN
+bx M
+xL
+xK
+xJ
+zI
+bx H
+bx G
+xF
+bx E
+xD
+bx C
+zB
+xA
+0@
+z?
+bx >
+bx =
+x<
+bx ;
+x:
+z9
+bx 8
+bx 7
+bx 6
+bx 5
+bx 4
+bx 3
+bx 2
+bx 1
+bx 0
+0/
+bx .
+bx -
+bx ,
+x+
+bx *
+x)
+x(
+0'
+bx &
+bx %
+0$
+bx #
+bx "
+bx !
+$end
+#5
+b0 4
+b0 "
+b0 0
+b0 8
+b0 !
+b0 5
+1$
+#10
+0$
+1/
+#15
+b1 8
+b1 !
+b1 5
+b0 7
+b0 *
+b1 6
+b1 %
+b1 4
+b1 "
+b1 0
+b1 3
+b1 ,
+b1010 1
+b1010 #
+b0 2
+b0 &
+1$
+#20
+0$
+#25
+b10 3
+b10 ,
+b1011 1
+b1011 #
+b1 2
+b1 &
+b10 4
+b10 "
+b10 0
+b11 7
+b11 *
+b10 6
+b10 %
+b10 8
+b10 !
+b10 5
+1$
+#30
+0$
+#35
+b11 8
+b11 !
+b11 5
+b0 7
+b0 *
+b11 6
+b11 %
+b11 4
+b11 "
+b11 0
+b11 3
+b11 ,
+b0 2
+b0 &
+1$
+#40
+0$
+#45
+b100 3
+b100 ,
+b1100 1
+b1100 #
+b11 2
+b11 &
+b100 4
+b100 "
+b100 0
+b100 6
+b100 %
+b100 8
+b100 !
+b100 5
+1$
+#50
+0$
+#55
+b101 8
+b101 !
+b101 5
+b1 7
+b1 *
+b101 6
+b101 %
+b101 4
+b101 "
+b101 0
+b101 3
+b101 ,
+b1010 1
+b1010 #
+1$
+#60
+0$
+#65
+b110 3
+b110 ,
+b1011 1
+b1011 #
+b101 2
+b101 &
+b110 4
+b110 "
+b110 0
+b10 7
+b10 *
+b110 6
+b110 %
+b110 8
+b110 !
+b110 5
+1$
+#70
+0$
+#75
+b111 8
+b111 !
+b111 5
+b0 7
+b0 *
+b111 6
+b111 %
+b111 4
+b111 "
+b111 0
+b111 3
+b111 ,
+b1101 1
+b1101 #
+b0 2
+b0 &
+1$
+#80
+0$
+#85
+b1000 3
+b1000 ,
+b1100 1
+b1100 #
+b10 2
+b10 &
+b1000 4
+b1000 "
+b1000 0
+b100 7
+b100 *
+b1000 6
+b1000 %
+b1000 8
+b1000 !
+b1000 5
+1$
+#90
+0$
+#95
+b1001 8
+b1001 !
+b1001 5
+b111 7
+b111 *
+b1001 6
+b1001 %
+b1001 4
+b1001 "
+b1001 0
+b1001 3
+b1001 ,
+b1101 1
+b1101 #
+b1000 2
+b1000 &
+1$
+#100
+0$
+#105
+b10000 3
+b10000 ,
+b1110 1
+b1110 #
+b1001 2
+b1001 &
+b1010 4
+b1010 "
+b1010 0
+b0 7
+b0 *
+b10000 6
+b10000 %
+b1010 8
+b1010 !
+b1010 5
+1$
+#110
+1N
+1+
+b1010 O
+0P
+1F
+1(
+b100 G
+b100 .
+b100 M
+1I
+b11 E
+b100 H
+1J
+1<
+1)
+b11 =
+b11 -
+b11 C
+1?
+b11 >
+b10 ;
+0@
+0$
+1'
+#115
+b1011 8
+b1011 !
+b1011 5
+bx 7
+bx *
+bx 6
+bx %
+b1011 4
+b1011 "
+b1011 0
+bx 3
+bx ,
+bx 1
+bx #
+bx 2
+bx &
+1$
+#120
+0$
+#125
+b1100 4
+b1100 "
+b1100 0
+b1100 8
+b1100 !
+b1100 5
+1$
+#130
+0$
+#135
+b1101 8
+b1101 !
+b1101 5
+b1101 4
+b1101 "
+b1101 0
+1$
+#140
+0$
+#145
+b1110 4
+b1110 "
+b1110 0
+b1110 8
+b1110 !
+b1110 5
+1$
+#150
+0$
+#155
+b1111 8
+b1111 !
+b1111 5
+b1111 4
+b1111 "
+b1111 0
+1$
+#160
+0$
+#165
+b0 4
+b0 "
+b0 0
+b10000 8
+b10000 !
+b10000 5
+1$
+#170
+0$
+#175
+b10001 8
+b10001 !
+b10001 5
+b1 4
+b1 "
+b1 0
+b1 3
+b1 ,
+b1010 1
+b1010 #
+b0 2
+b0 &
+1$
+#180
+0$
+#185
+b10 3
+b10 ,
+b1011 1
+b1011 #
+b1 2
+b1 &
+b10 4
+b10 "
+b10 0
+b10010 8
+b10010 !
+b10010 5
+1$
+#190
+0$
+#195
+b10011 8
+b10011 !
+b10011 5
+b11 4
+b11 "
+b11 0
+b11 3
+b11 ,
+b0 2
+b0 &
+1$
+#200
+0$
+#205
+b100 3
+b100 ,
+b1100 1
+b1100 #
+b11 2
+b11 &
+b100 4
+b100 "
+b100 0
+b10100 8
+b10100 !
+b10100 5
+1$
+#210
+0$
+#215
+b10101 8
+b10101 !
+b10101 5
+b101 4
+b101 "
+b101 0
+b101 3
+b101 ,
+b1010 1
+b1010 #
+1$
+#220
+0$
+#225
+b110 3
+b110 ,
+b1011 1
+b1011 #
+b101 2
+b101 &
+b110 4
+b110 "
+b110 0
+b0 8
+b0 !
+b0 5
+1$
+#230
+0$
+#235
+b1 8
+b1 !
+b1 5
+b0 7
+b0 *
+b1 6
+b1 %
+b111 4
+b111 "
+b111 0
+b111 3
+b111 ,
+b1101 1
+b1101 #
+b0 2
+b0 &
+1$
+#240
+0$
+#245
+b1000 3
+b1000 ,
+b1100 1
+b1100 #
+b10 2
+b10 &
+b1000 4
+b1000 "
+b1000 0
+b11 7
+b11 *
+b10 6
+b10 %
+b10 8
+b10 !
+b10 5
+1$
+#250
+0$
