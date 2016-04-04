@@ -1,8 +1,10 @@
 //TABLE_READER.v
-module TABLE_READER(CLK, RST, EN, NOW_STATE, EN_NEXT);
+module TABLE_READER(CLK, RST, EN, STRING, NOW_STATE);
+//module TABLE_READER(CLK, RST, EN, STRING, NOW_STATE, EN_NEXT);
 input CLK;
 input RST;
 input EN;
+input [7:0] STRING;
 
 output [7:0] NOW_STATE;
 output EN_NEXT;
@@ -35,12 +37,13 @@ function PROCESS_STRING;
         end else
           EN = 0;
       end
+
     end
     //この回路は初期状態のみを処理する場合
     if(CHARA_EN == 1) begin
-      if(RAM_CHARA[ADDR[1]] == 11) begin
+      if(RAM_CHARA[ADDR[1]] == STRING) begin
         NOW_STATE = RAM_NEXT_STATE[ADDR[1]];
-        EN_NEXT = 1;// TABLE_READER1.vの処理フラグON
+        //EN_NEXT = 1;// TABLE_READER1.vの処理フラグON
       end else
         NOW_STATE = 0;
     end
