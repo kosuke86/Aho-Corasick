@@ -1,8 +1,9 @@
 //TABLE_READER1.v
-module TABLE_READER1(CLK, RST, EN, NOW_STATE_IN, NOW_STATE_OUT, EN_MATCH);
+module TABLE_READER1(CLK, RST, EN, STRING, NOW_STATE_IN, NOW_STATE_OUT, EN_MATCH);
 input CLK;
 input RST;
 input EN;
+input [7:0] STRING;
 input [7:0] NOW_STATE_IN;
 output [7:0] NOW_STATE_OUT;
 output EN_MATCH;
@@ -36,7 +37,7 @@ function PROCESS_STRING1;
       end
     end
     if(CHARA_EN == 1) begin
-      if(RAM_CHARA[ADDR[0]] == 12) begin // テキストデータを入れる予定
+      if(RAM_CHARA[ADDR[0]] == STRING) begin
         NOW_STATE_OUT = RAM_NEXT_STATE[ADDR[0]];
         EN_MATCH = 1;
       end else if (RAM_FAILURE_STATE[NOW_STATE_IN - 1] == 0) begin
