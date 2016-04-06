@@ -1,6 +1,5 @@
 //TABLE_READER.v
 module TABLE_READER(CLK, RST, EN, STRING, NOW_STATE);
-//module TABLE_READER(CLK, RST, EN, STRING, NOW_STATE, EN_NEXT);
 input CLK;
 input RST;
 input EN;
