@@ -27,7 +27,16 @@ using namespace std;
 #include <list>
 #include <map>
 #include <set>
- 
+#include <sys/time.h>//実行時間
+#include <sys/resource.h>//実行時間
+
+int gettimeofday(struct timeval *tv, struct timezone *tz);
+int settimeofday(const struct timeval *tv, const struct timezone *tz);
+struct timeval tv,tv1,tz,tz1;
+int getrusage(int who, struct rusage *usage);
+int state_cnt=0;
+int trans_cnt=0;
+
 #define foreach(x, v) for (typeof (v).begin() x=(v).begin(); x !=(v).end(); ++x)
 #define For(i, a, b) for (int i=(a); i<(b); ++i)
 #define D(x) cout << #x " is " << x << endl
@@ -133,6 +142,8 @@ int findNextState(int currentState, char nextInput, char lowestChar = 'a')
 
 int main()
 {
+    struct rusage t;
+    gettimeofday(&tv,NULL);
     vector<string> keywords;
     keywords.push_back("ab");
     keywords.push_back("bc");
@@ -141,10 +152,9 @@ int main()
     keywords.push_back("abcde");
     string text = "xbabcdex";
     buildMatchingMachine(keywords, 'a', 'z');
-
     int max_state = *max_element(nextstate_gotoFunction.begin(), nextstate_gotoFunction.end());
     int currentState = 0;
-    /*
+/*
     for (int i = 0; i < text.size(); ++i)
     {
         currentState = findNextState(currentState, text[i], 'a');
@@ -177,7 +187,9 @@ int main()
     vector<unsigned int>::iterator nextstate_show = nextstate_gotoFunction.begin();
     vector<unsigned char>::iterator trans_show = trans_gotoFunction.begin();
     for(; trans_show < trans_gotoFunction.end(); trans_show++){
-      cout << *state_show << *trans_show << *nextstate_show << endl;
+      cout << *state_show << endl;
+      cout << *trans_show << endl;
+      cout << *nextstate_show << endl;
       state_show++;
       nextstate_show++;
     }   
@@ -187,8 +199,12 @@ int main()
       cout << "f(" << b << ")=" << f[b] << endl;   
 */
     cout << "-----------failure function-----------" << endl;
-    for (int b = 1; b < max_state + 1; b++)
-      cout <<  b << f[b] << endl;
+    for (int b = 1; b < max_state + 1; b++){
+      cout <<  b << endl;
+    }
+    for (int b = 1; b < max_state + 1; b++){
+      cout << f[b] << endl;
+    }
     
    
     cout << "-----------output function-----------" << endl;
@@ -197,6 +213,10 @@ int main()
       if ( out[a] != 0)
       cout << a << endl;
     }
-    
+ 
+    gettimeofday(&tz,NULL);
+    printf("time = %f秒\n",(tz.tv_sec - tv.tv_sec)+(tz.tv_usec - tv.tv_usec)*1.0E-6);
+    getrusage(RUSAGE_SELF ,&t);
+    printf("memory = %ld\n", t.ru_maxrss); 
     return 0;
 }
