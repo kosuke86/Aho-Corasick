@@ -1,4 +1,5 @@
 //TABLE_READER1.v
+//メモリテーブルを用いて文字列探索を行う
 module TABLE_READER1(CLK, RST, EN, STRING, NOW_STATE_IN, NOW_STATE_OUT, EN_MATCH);
 input CLK;
 input RST;
