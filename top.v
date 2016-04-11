@@ -1,7 +1,6 @@
 //TOP.v
 module TOP(CLK, RST, EN, EN_A, STRING);
 input CLK, RST, EN, EN_A;
-//input CLK, RST, EN;
 input [7:0] STRING;
 
 //GOTO_ADDR.v
