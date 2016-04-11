@@ -1,4 +1,5 @@
 //REGISTER.v
+//状態遷移の情報を格納するモジュール
 module REGISTER(CLK, RST, EN, EN1,  NOW_STATE, NOW_STATE1);
 input CLK;
 input RST;
