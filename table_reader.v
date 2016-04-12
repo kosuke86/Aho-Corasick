@@ -1,4 +1,5 @@
 //TABLE_READER.v
+//初期状態を処理する
 module TABLE_READER(CLK, RST, EN, STRING, NOW_STATE);
 input CLK;
 input RST;
@@ -38,30 +39,13 @@ function PROCESS_STRING;
       end
 
     end
-    //この回路は初期状態のみを処理する場合
     if(CHARA_EN == 1) begin
       if(RAM_CHARA[ADDR[1]] == STRING) begin
         NOW_STATE = RAM_NEXT_STATE[ADDR[1]];
-        //EN_NEXT = 1;// TABLE_READER1.vの処理フラグON
       end else
         NOW_STATE = 0;
     end
   end
-
-
-//今後拡張する場合に置いておく
-/*
-if(CHARA_EN == 1) begin
-  if(RAM_CHARA[ADDR] == 12) begin // テキストデータを入れる予定
-    NOW_STATE_OUT = RAM_NEXT_STATE[ADDR];
-  end else if (RAM_FAILURE_STATE[NOW_STATE_IN + 1] == 0) begin
-      NOW_STATE_OUT = 0;
-      end else 
-        NOW_STATE_OUT = RAM_FAILURE_STATE[NOW_STATE_IN + 1];
-    end
-  end
-end
-*/
 endfunction
 
 assign SEARCH_OUT = PROCESS_STRING(EN, CHARA_EN);
