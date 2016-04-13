@@ -8,11 +8,12 @@ input [7:0] STRING;
 input [7:0] NOW_STATE_IN;
 output [7:0] NOW_STATE_OUT;
 output EN_MATCH;
-integer i,j;
+integer i,j,k,l;
 
 reg [7:0] ADDR [0:31];
 reg [7:0] NOW_STATE_OUT;
 reg EN_MATCH;
+reg FLUG;
 reg [7:0] RAM_CURRENT_STATE_G[0:31];
 reg [3:0] RAM_CHARA[0:31];
 reg [7:0] RAM_NEXT_STATE[0:31];
@@ -38,16 +39,21 @@ function PROCESS_STRING1;
       end
     end
     if(CHARA_EN == 1) begin
-      if(RAM_CHARA[ADDR[0]] == STRING) begin
-        NOW_STATE_OUT = RAM_NEXT_STATE[ADDR[0]];
-        EN_MATCH = 1;
-      end else if (RAM_FAILURE_STATE[NOW_STATE_IN - 1] == 0) begin
-        NOW_STATE_OUT = 0;
-      end else 
-        NOW_STATE_OUT = RAM_FAILURE_STATE[NOW_STATE_IN - 1];
+      for (k=0; k<j; k=k+1) begin
+        if(RAM_CHARA[ADDR[k]] == STRING) begin
+          FLUG = 1;
+          l = k;
+        end
+        if(FLUG == 1) begin
+          NOW_STATE_OUT = RAM_NEXT_STATE[ADDR[l]];
+          EN_MATCH = 1;
+        end else if (RAM_FAILURE_STATE[NOW_STATE_IN - 1] == 0) begin
+          NOW_STATE_OUT = 0;
+        end else
+          NOW_STATE_OUT = RAM_FAILURE_STATE[NOW_STATE_IN - 1];
+      end
     end
   end
 endfunction
-
 assign SEARCH_OUT1 = PROCESS_STRING1(EN, CHARA_EN);
 endmodule
