@@ -52,6 +52,7 @@ function PROCESS_STRING;
         NOW_STATE = 0;
     end
   end
+end
 endfunction
 
 assign SEARCH_OUT = PROCESS_STRING(EN, CHARA_EN);
