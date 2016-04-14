@@ -44,7 +44,7 @@ function PROCESS_STRING;
       for (k=0; k<j; k=k+1) begin
         if(RAM_CHARA[ADDR[k]] == STRING) begin
           FLUG = 1;
-          l = k;
+          l = k;//値を移す
         end
         if(FLUG == 1) begin
           NOW_STATE = RAM_NEXT_STATE[ADDR[l]];
