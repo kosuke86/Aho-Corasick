@@ -1,5 +1,4 @@
 /*
-master_aho.cc
    goto_function
    failure_function
    output_function
