@@ -170,17 +170,7 @@ int main()
        
     }
    */
-/*
-    cout << "-----------goto function-----------" << endl;
-    vector<unsigned int>::iterator state_show = state_gotoFunction.begin();
-    vector<unsigned int>::iterator nextstate_show = nextstate_gotoFunction.begin();
-    vector<unsigned char>::iterator trans_show = trans_gotoFunction.begin();
-    for(; trans_show < trans_gotoFunction.end(); trans_show++){
-      cout << "g(" << *state_show << "," << *trans_show << ")=" << *nextstate_show << endl;
-      state_show++;
-      nextstate_show++;
-    }
-*/
+
     cout << "-----------goto function-----------" << endl;
     vector<unsigned int>::iterator state_show = state_gotoFunction.begin();
     vector<unsigned int>::iterator nextstate_show = nextstate_gotoFunction.begin();
