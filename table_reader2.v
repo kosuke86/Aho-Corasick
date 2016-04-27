@@ -9,10 +9,11 @@ input [7:0] NOW_STATE_IN;
 output [7:0] NOW_STATE_OUT;
 output EN_MATCH;
 integer i,j,k,l;
-integer I,J,K,L;
+integer m,n,o,p;
 
 reg [7:0] ADDR [0:31];
 reg [7:0] NOW_STATE_OUT;
+reg [7:0] NOW_STATE_OUT_TMP;
 reg EN_MATCH;
 reg FLUG;
 reg [7:0] RAM_CURRENT_STATE_G[0:31];
@@ -28,6 +29,10 @@ initial $readmemh("failure_state_failure.txt", RAM_FAILURE_STATE);
 function PROCESS_STRING2;
   input EN;
   input CHARA_EN;
+  input FLUG;
+  input FAILURE_FLUG;
+  input CHARA_EN1;
+  input FLUG1;
   begin
     if(EN == 1) begin // TABLE_READER1.vから信号受け取ってる
       j = 0;
@@ -38,9 +43,10 @@ function PROCESS_STRING2;
           CHARA_EN = 1; //flug on
         end
       end
-          CHARA_EN = 1; //flug on
+      CHARA_EN = 1; //flug on
     end
     if(CHARA_EN == 1) begin
+      FLUG = 0;
       for (k=0; k<j; k=k+1) begin
         if(RAM_CHARA[ADDR[k]] == STRING) begin
           FLUG = 1;
@@ -50,37 +56,41 @@ function PROCESS_STRING2;
       if(FLUG == 1) begin
         NOW_STATE_OUT = RAM_NEXT_STATE[ADDR[l]];
         EN_MATCH = 1;
-      end else if (RAM_FAILURE_STATE[NOW_STATE_IN - 1] == 0) begin
-        NOW_STATE_OUT = 0;
-        FAILURE_FLUG = 1;
-      end else
-        NOW_STATE_OUT = RAM_FAILURE_STATE[NOW_STATE_IN - 1];
-        FAILURE_FLUG = 1;
-    end
+      end
+      if (FLUG == 0) begin
+        if (RAM_FAILURE_STATE[NOW_STATE_IN - 1] == 0) begin
+          NOW_STATE_OUT_TMP = 0;
+          FAILURE_FLUG = 1;
+        end else
+          NOW_STATE_OUT_TMP = RAM_FAILURE_STATE[NOW_STATE_IN - 1];
+          FAILURE_FLUG = 1;
+        end
     //failure遷移後の処理
     if (FAILURE_FLUG == 1) begin
-      for(I=0; I<11; I=I+1) begin
-        if(RAM_CURRENT_STATE_G[i] == NOW_STATE_OUT) begin
-          ADDR[J] = I;
-          J = J + 1;
+      n=0;
+      for(m=0; m<11; m=m+1) begin
+        if(RAM_CURRENT_STATE_G[m] == NOW_STATE_OUT_TMP) begin
+          ADDR[n] = m;
+          n = n + 1;
           CHARA_EN1 = 1; //flug on
         end
       end
           CHARA_EN1 = 1; //flug on
-    end
+        end
     if(CHARA_EN1 == 1) begin
-      for (K=0; K<J; K=K+1) begin
-        if(RAM_CHARA[ADDR[K]] == STRING) begin
+      for (o=0; o<n; o=o+1) begin
+        if(RAM_CHARA[ADDR[o]] == STRING) begin
           FLUG1 = 1;
-          L = K;
+          p = o;
         end
       end
       if(FLUG1 == 1) begin
-        NOW_STATE_OUT = RAM_NEXT_STATE[ADDR[L]];
+        NOW_STATE_OUT = RAM_NEXT_STATE[ADDR[p]];
         EN_MATCH = 1;
       end
     end
   end
+end
 endfunction
-assign SEARCH_OUT2 = PROCESS_STRING2(EN, CHARA_EN);
+assign SEARCH_OUT2 = PROCESS_STRING2(EN, CHARA_EN, FLUG, FAILURE_FLUG, CHARA_EN1, FLUG1);
 endmodule
