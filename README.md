@@ -18,10 +18,11 @@
 ↑照合判定
 
 ## Requirement
--C++
--Verilog
+- C++
+- Verilog
 
 ## Author
 @ko_duke86
 
 ## License
+Copyright © 2016 Kosuke Nishimura from West lab. All Rights Reserved.
