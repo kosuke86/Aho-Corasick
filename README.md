@@ -1,5 +1,5 @@
 # Verilog for Aho-Corasick algorithm
-##Description
+## Description
 1.master_aho.ccからAho-Corasick法で必要な情報を抽出する
 - goto function
 - failure function
@@ -16,3 +16,12 @@
 5.text dataから入力した文字とパターンがマッチしてるとmatch.vがhighになる。
 
 ↑照合判定
+
+## Requirement
+-C++
+-Verilog
+
+## Author
+@ko_duke86
+
+## License
