@@ -1,5 +1,9 @@
-## Verilog for Aho-Corasick algorithm
-1.master_aho.ccからAho-Corasick法で必要な情報(goto関数、failure関数、output関数)を抽出する
+# Verilog for Aho-Corasick algorithm
+##Description
+1.master_aho.ccからAho-Corasick法で必要な情報を抽出する
+- goto function
+- failure function
+- output function
 
 2.goto_ram.vとfailure_goto.vに投げてレジスタ配列に格納しメモリテーブルを作成する。
 
