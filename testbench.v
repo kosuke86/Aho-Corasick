@@ -79,21 +79,7 @@ initial begin
   #10
   INITIALIZE = 0;
   EN = 1;
-  STRING = STRING_DATA[6];
-  #10
-  INITIALIZE = 1;
-  EN = 0;
-  #10
-  INITIALIZE = 0;
-  EN = 1;
   STRING = STRING_DATA[7];
-  #10
-  INITIALIZE = 1;
-  EN = 0;
-  #10
-  INITIALIZE = 0;
-  EN = 1;
-  STRING = STRING_DATA[8];
   #10
   $finish;
 end
