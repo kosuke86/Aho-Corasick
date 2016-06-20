@@ -4,13 +4,13 @@ module testbench;
 reg CLK;
 reg RST;
 reg EN;
-reg EN_A;
+reg INITIALIZE;
 reg [7:0] STRING;
 
 reg [7:0] STRING_DATA[0:31];
 initial $readmemh("a.txt", STRING_DATA);
 
-TOP TOP(CLK, RST, EN, EN_A, STRING);
+TOP TOP(CLK, RST, EN, INITIALIZE, STRING);
 
 parameter STEP = 10;
 
@@ -22,18 +22,78 @@ initial begin
   $dumplimit(100000);
   CLK = 0;
   RST = 0;
+  INITIALIZE = 0;
+  #10
+  INITIALIZE = 1;
   EN = 0;
-  EN_A = 0;
   #10
   RST = 1;
   EN = 1;
+  INITIALIZE = 0;
   STRING = STRING_DATA[0];
   #10
-  EN_A = 1;
+  INITIALIZE = 1;
   EN = 0;
+  #10
+  INITIALIZE = 0;
+  EN = 1;
   STRING = STRING_DATA[1];
   #10
+  INITIALIZE = 1;
+  EN = 0;
+  #10
+  INITIALIZE = 0;
+  EN = 1;
   STRING = STRING_DATA[2];
+  #10
+  INITIALIZE = 1;
+  EN = 0;
+  #10
+  INITIALIZE = 0;
+  EN = 1;
+  STRING = STRING_DATA[3];
+  #10
+  INITIALIZE = 1;
+  EN = 0;
+  #10
+  INITIALIZE = 0;
+  EN = 1;
+  STRING = STRING_DATA[4];
+  #10
+  INITIALIZE = 1;
+  EN = 0;
+  #10
+  INITIALIZE = 0;
+  EN = 1;
+  STRING = STRING_DATA[5];
+  #10
+  INITIALIZE = 1;
+  EN = 0;
+  #10
+  INITIALIZE = 0;
+  EN = 1;
+  STRING = STRING_DATA[6];
+  #10
+  INITIALIZE = 1;
+  EN = 0;
+  #10
+  INITIALIZE = 0;
+  EN = 1;
+  STRING = STRING_DATA[6];
+  #10
+  INITIALIZE = 1;
+  EN = 0;
+  #10
+  INITIALIZE = 0;
+  EN = 1;
+  STRING = STRING_DATA[7];
+  #10
+  INITIALIZE = 1;
+  EN = 0;
+  #10
+  INITIALIZE = 0;
+  EN = 1;
+  STRING = STRING_DATA[8];
   #10
   $finish;
 end
