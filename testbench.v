@@ -12,7 +12,7 @@ initial $readmemh("a.txt", STRING_DATA);
 
 TOP TOP(CLK, RST, EN, INITIALIZE, STRING);
 
-parameter STEP = 10;
+parameter STEP = 20;
 
 always #(STEP / 2) CLK = ~CLK;
 
@@ -81,6 +81,8 @@ initial begin
   EN = 1;
   STRING = STRING_DATA[7];
   #10
+  #10
+
   $finish;
 end
 
