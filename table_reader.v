@@ -38,6 +38,8 @@ function PROCESS_STRING;
   input FLUG1;
   begin
     if(EN == 1) begin
+      FLUG = 0;
+      NOW_STATE_OUT_TMP = 0; //INITIALIZE
       j = 0;
       for(i=0; i<11; i=i+1) begin
         if(RAM_CURRENT_STATE_G[i] == NOW_STATE_IN) begin
@@ -49,7 +51,6 @@ function PROCESS_STRING;
       CHARA_EN = 1; //flug on
     end
     if(CHARA_EN == 1) begin
-      FLUG = 0;
       for (k=0; k<j; k=k+1) begin
         if(RAM_CHARA[ADDR[k]] == STRING) begin
           FLUG = 1;
@@ -70,6 +71,7 @@ function PROCESS_STRING;
         end
     //failure遷移後の処理
     if (FAILURE_FLUG == 1) begin
+      FLUG1 = 0;
       n=0;
       for(m=0; m<11; m=m+1) begin
         if(RAM_CURRENT_STATE_G[m] == NOW_STATE_OUT_TMP) begin
@@ -81,7 +83,6 @@ function PROCESS_STRING;
           CHARA_EN1 = 1; //flug on
     end
     if(CHARA_EN1 == 1) begin
-      FLUG1 = 0;
       for (o=0; o<n; o=o+1) begin
         if(RAM_CHARA[ADDR[o]] == STRING) begin
           FLUG1 = 1;
@@ -93,7 +94,8 @@ function PROCESS_STRING;
         EN_MATCH = 1;
       end
       if(FLUG1 == 0) begin
-        NOW_STATE_OUT = NOW_STATE_OUT_TMP;
+        NOW_STATE_OUT = 0;
+        p=7;
       end
     end
   end
@@ -112,7 +114,6 @@ function INITIALIZE_FUN;
   reg FLUG1;
   reg EN_MATCH;
   reg EN;
-  reg NOW_STATE_OUT_TMP;
   begin
     //初期化
     if (INITIALIZE == 1) begin
@@ -123,7 +124,6 @@ function INITIALIZE_FUN;
     FLUG1 = 0;
     EN_MATCH = 0;
     EN = 0;
-    NOW_STATE_OUT_TMP = 0;
     i=0;
     j=0;
     k=0;
