@@ -29,9 +29,7 @@ output EN_MATCH;
 integer i,j,k,l;
 integer m,n,o,p;
 
-reg FLUG;
-reg CHARA_EN;
-reg CHARA_EN1;
+
 reg EN_MATCH;
 reg [7:0] ADDR [0:31];
 reg [7:0] NOW_STATE_OUT;
@@ -48,11 +46,20 @@ initial $readmemh("failure_state_failure.txt", RAM_FAILURE_STATE);
 wire SEARCH_OUT;
 wire INITIALIZE1;
 
+reg FAILURE_FLUG;
+reg FLUG;
+reg FLUG1;
+reg CHARA_EN;
+reg CHARA_EN1;
+
 //aho-corasick algorithm
 function PROCESS_STRING;
   input EN;
   input FAILURE_FLUG;
+  input FLUG;
   input FLUG1;
+  input CHARA_EN;
+  input CHARA_EN1;
   begin
     if(EN == 1) begin
       FLUG = 0;
@@ -86,7 +93,7 @@ function PROCESS_STRING;
           NOW_STATE_OUT_TMP = RAM_FAILURE_STATE[NOW_STATE_IN - 1];
           FAILURE_FLUG = 1;
         end
-    //Process of after failure transition 
+    //failure遷移後の処理
     if (FAILURE_FLUG == 1) begin
       FLUG1 = 0;
       n=0;
@@ -132,7 +139,7 @@ function INITIALIZE_FUN;
   reg EN_MATCH;
   reg EN;
   begin
-    //Initialize
+    //初期化
     if (INITIALIZE == 1) begin
     CHARA_EN = 0;
     FLUG = 0;
@@ -152,6 +159,6 @@ function INITIALIZE_FUN;
   end
 end
 endfunction
-assign SEARCH_OUT = PROCESS_STRING(EN, FAILURE_FLUG, FLUG1);
+assign SEARCH_OUT = PROCESS_STRING(EN, FAILURE_FLUG, FLUG, FLUG1, CHARA_EN, CHARA_EN1);
 assign INITIALIZE1 = INITIALIZE_FUN(INITIALIZE);
 endmodule
