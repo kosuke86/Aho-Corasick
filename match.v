@@ -11,6 +11,8 @@ integer a;
 reg MATCH;
 reg [7:0] RAM_OUTPUT_STATE[0:31];
 
+wire MATCH_JUDGE;
+
 initial $readmemh("state_output.txt", RAM_OUTPUT_STATE);
 
 //matching function
