@@ -5,9 +5,9 @@ reg CLK;
 reg RST;
 reg EN;
 reg INITIALIZE;
-reg [7:0] STRING;
+reg [3:0] STRING;
 
-reg [7:0] STRING_DATA[0:31];
+reg [3:0] STRING_DATA[0:31];
 initial $readmemh("a.txt", STRING_DATA);
 
 TOP TOP(CLK, RST, EN, INITIALIZE, STRING);
