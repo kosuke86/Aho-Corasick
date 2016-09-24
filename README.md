@@ -1,4 +1,4 @@
-# Verilog for Aho-Corasick algorithm
+# Aho-Corasick algorithm for FPGA
 ## Description
 1.master_aho.ccからAho-Corasick法で必要な情報を抽出する
 - goto function
