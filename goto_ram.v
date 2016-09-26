@@ -1,12 +1,9 @@
 //GOTO_RAM.v
 //レジスタ配列に格納(memory)
-module GOTO_RAM(CLK, RST, ADDR_G, CURRENT_STATE_G, CHARA, NEXT_STATE);
+module GOTO_RAM(CLK, RST, ADDR_G);
 input CLK;
 input RST;
 input [11:0] ADDR_G;
-output [7:0] CURRENT_STATE_G;
-output [3:0] CHARA;
-output [7:0] NEXT_STATE;
 //32bit(=8文字分)レジスタ配列32行分
 reg [7:0]RAM_CURRENT_STATE_G[0:31];
 reg [3:0]RAM_CHARA[0:31];
