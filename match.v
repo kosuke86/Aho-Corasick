@@ -1,8 +1,8 @@
 //MATCH.v
 //マッチング判定
-module MATCH(CLK, RST, EN, STATE_DATA, MATCH);
+module MATCH(CLK, INITIALIZE, EN, STATE_DATA, MATCH);
 input CLK;
-input RST;
+input INITIALIZE;
 input EN;
 input [7:0] STATE_DATA;
 output MATCH;
@@ -15,21 +15,38 @@ wire MATCH_JUDGE;
 
 initial $readmemh("state_output.txt", RAM_OUTPUT_STATE);
 
+
+always @ CLK begin
+  if (INITIALIZE == 1) begin
+    MATCH = 0;
+    a = 0;
+  end
+  if(EN == 1) begin
+    for(a=0; a<10; a=a+1) begin
+      if(RAM_OUTPUT_STATE[a] == STATE_DATA) begin
+        MATCH = 1;
+      end
+    end
+  end
+end
+
+/*
 //matching function
 function MATCHING;
   input EN;
   begin
     if(EN == 1) begin
       for(a=0; a<10; a=a+1) begin
-        if(RAM_OUTPUT_STATE[a] == STATE_DATA) begin
+        if(RAM_OUTPUT_STATE[a] != STATE_DATA) begin
           MATCH = 1;
-          EN = 0;// 処理を終わらせるため
-        end else
-          MATCH = 0;
+        end
       end
     end
-  end
+    EN = 0;
+    a = 0;
+end
 endfunction
 
 assign MATCH_JUDGE = MATCHING(EN);
+*/
 endmodule
