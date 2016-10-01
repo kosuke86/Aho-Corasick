@@ -81,6 +81,9 @@ initial begin
   EN = 1;
   STRING = STRING_DATA[7];
   #10
+  INITIALIZE = 1;
+  EN = 0;
+  #10
   #10
 
   $finish;
