@@ -17,9 +17,7 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-module TABLE_READER(CLK, RST, EN, STRING, NOW_STATE_IN, NOW_STATE_OUT, EN_MATCH, INITIALIZE);
-input CLK;
-input RST;
+module TABLE_READER(EN, STRING, NOW_STATE_IN, NOW_STATE_OUT, EN_MATCH, INITIALIZE);
 input EN;
 input INITIALIZE;
 input [3:0] STRING;
